@@ -1,0 +1,10 @@
+WINDOWS ONLY!!!
+For any beginner here like me who is/was having trouble in the installation process, I'll give you an quick, step-by-step breakdown of the correct process to be followed.
+I just finished installing everything an hour ago after a day of running into endless errors lol.
+Follow these steps in order. You break the order, you might run into some error.
+1. Install CMake and add it to the system path (Youtube tutorial for CMake installation- https://www.youtube.com/watch?v=8_X5Iq9niDE).
+2. Install Python 3.6.4. Add it to the system path as well.(Youtube tutorial for Python installation- https://youtu.be/3lGhtIqT0Tk) (I had Python 3.8 on my system earlier but OpenVINO supports only Python 3.5 and 3.6, so I had to install Python 3.6).
+3. Install Visual Studio 2019. Remember, you have to restart your PC after the installation is complete. If you forget to restart to complete VS's installation, you'll run into an error again at the time of configuring model optimizer as for the build tools to install a system restart is required.
+4. Once you have successfully completed all the above three steps, only then proceed to install OpenVINO. To make the process less of a hassle, install it in C drive only (You can obviously choose any other drive if you want).
+5. After the installation is complete, you will be redirected to a web page where you will see further instructions to complete the set-up process. Follow those in order, as given on that web page. (Webpage link, in case it doesn't open- https://docs.openvinotoolkit.org/2019_R3.1/_docs_install_guides_installing_openvino_windows.html#set-the-environment-variables)
+I know these instructions aren't detailed. These are just to help you follow the correct order of steps for installation and setup of OpenVINO. If you need detailed steps, DM me and I'll try to help you with the installation process step-by-step.

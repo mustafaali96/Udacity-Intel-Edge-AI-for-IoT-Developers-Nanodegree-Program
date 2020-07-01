@@ -1,0 +1,70 @@
+Lesson 2: task 1
+
+
+git clone https://github.com/opencv/open_model_zoo.git
+cd open_model_zoo/tools/downloader
+ls
+python downloader.py -h
+sudo ./downloader.py --name human-pose-estimation-0001
+sudo ./downloader.py --name text-detection-0004 --precisions FP16 
+sudo ./downloader.py --name vehicle-attributes-recognition-barrier-0039 --precisions INT8
+ls
+cd intel
+
+Lesson 3: 
+exercise 1: convert a Tensorflow model
+
+wget http://download.tensorflow.org/models/object_detection/ssd_mobilenet_v2_coco_2018_03_29.tar.gz
+tar -xvf ssd_mobilenet_v2_coco_2018_03_29.tar.gz
+cd ssd_mobilenet_v2_coco_2018_03_29
+ls
+python /opt/intel/openvino/deployment_tools/model_optimizer/mo.py --input_model frozen_inference_graph.pb --tensorflow_object_detection_api_pipeline_config pipeline.config --reverse_input_channels --tensorflow_use_custom_operations_config /opt/intel/openvino/deployment_tools/model_optimizer/extensions/front/tf/ssd_v2_support.json
+
+exercise 2: convert a caffe model
+git clone https://github.com/DeepScale/SqueezeNet
+cd SqueezeNet
+cd cd SqueezeNet_v1.1
+python /opt/intel/openvino/deployment_tools/model_optimizer/mo.py --input_model squeezenet_v1.1.caffemodel --input_proto deploy.prototxt
+
+exercise 3: convert ONNX model
+
+wget https://s3.amazonaws.com/download.onnx/models/opset_8/bvlc_alexnet.tar.gz
+tar -xvf bvlc_alexnet.tar.gz
+cd bvlc_alexnet
+python /opt/intel/openvino/deployment_tools/model_optimizer/mo.py --input_model model.onnx
+
+
+Lesson 4
+
+Ex 1: Feed an IR to the Inference Engine> python feed_network.py -m /home/workspace/models/human-pose-estimation-0001.xml
+> python feed_network.py -m /home/workspace/models/text-detection-0004.xm
+> python feed_network.py -m /home/workspace/models/vehicle-attributes-recognition-barrier-0039.xml
+
+Ex 2: Inference Request
+> python test.py 
+
+
+Ex3: Integrate into an app
+same as Lesson3 convert a TF model
+wget http://download.tensorflow.org/models/object_detection/ssd_mobilenet_v2_coco_2018_03_29.tar.gz
+tar -xvf ssd_mobilenet_v2_coco_2018_03_29.tar.gz
+cd ssd_mobilenet_v2_coco_2018_03_29
+ls
+python /opt/intel/openvino/deployment_tools/model_optimizer/mo.py --input_model frozen_inference_graph.pb --tensorflow_object_detection_api_pipeline_config pipeline.config --reverse_input_channels --tensorflow_use_custom_operations_config /opt/intel/openvino/deployment_tools/model_optimizer/extensions/front/tf/ssd_v2_support.json
+
+
+python app-custom.py -m /home/workspace/ssd_mobilenet_v2_coco_2018_03_29/frozen_inference_graph.xml -c "BLUE" -ct "0.6"
+
+
+
+Lesson 5:
+
+Ex 2
+run on 4 differnt terminals
+
+final run: python app.py | ffmpeg -v warning -f rawvideo -pixel_format bgr24 -video_size 1280x720 -framerate 24 -i - http://0.0.0.0:3004/fac.ffm
+
+
+
+
+
